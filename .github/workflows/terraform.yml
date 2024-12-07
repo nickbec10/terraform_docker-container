@@ -9,6 +9,13 @@ jobs:
       - uses: hashicorp/setup-terraform@v2
       - run: terraform init
       - run: terraform apply -auto-approve
-      - name: GET test webpage
-        run: |
+      - name: get http://www.example.com/ response code
+        id: code
         run: response=$(curl --silent --output /dev/null --write-out "%{http_code}" http://localhost:8000); echo "response=$response" >> $GITHUB_OUTPUT
+
+      - name: echo response
+        run: |
+          echo ${{ steps.code.outputs.response }}
+
+    outputs:
+      curl_response: ${{ steps.code.outputs.response }} 
