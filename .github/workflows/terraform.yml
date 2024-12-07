@@ -11,5 +11,5 @@ jobs:
       - run: terraform apply -auto-approve
       - name: GET test webpage
         run: |
-        response = $(curl https://locakhost:8000 -header "Accept= application/json" -header "X-Username= ${{ secrets.USER_NAME }}" -header "X-Password= ${{ secrets.PASSWORD }}")         
+        response = $(curl https://locakhost:8000        
         echo "response from curl= $response" 
